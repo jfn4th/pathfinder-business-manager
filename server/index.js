@@ -2,7 +2,7 @@ const express = require('express'),
     // businessRouter = require('./routes/businessRouter'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
-    // db = require('./db'),
+    db = require('./db'),
     app = express(),
     apiPort = 3000;
 
@@ -10,7 +10,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// db.on('error', console.error.bind(console, 'MongoDB Atlas connection error:'));
+db.on('error', console.error.bind(console, 'MongoDB Atlas connection error:'));
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
