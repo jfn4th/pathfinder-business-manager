@@ -6,17 +6,20 @@ const Business = new Schema(
         name: { type: String, required: true },
         rooms: { type: [ Object ], required: true },
         teams: { type: [ Object ], required: true },
-        owner: { type: String, required: true },
-        location: { type: String, required: true }
-        // author: {
-        //     id: {
-        //         type: mongoose.Schema.Types.ObjectId,
-        //         ref: 'User'
-        //     },
-        //     username: { type: String, required: true }
-        // }
+        location: { type: String, required: true },
+        manager: {
+            manType: { type: String, required: true },
+            price: { type: Number, required: true }
+        },
+        owner: {
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Character'
+            },
+            name: String
+        }
     },
     { timestamps: true }
 );
 
-module.exports = mongoose.model('Business', Movie);
+module.exports = mongoose.model('Businesses', Business);
