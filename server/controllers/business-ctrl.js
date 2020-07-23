@@ -1,15 +1,15 @@
 const Business = require('../models/business');
 
 createBusiness = (req, res) => {};
-getBusinessesByCharacter = (req, res) => {};
+getBusinessesByCharacterId = (req, res) => {};
 getBusinessById = (req, res) => {};
 updateBusiness = (req, res) => {};
 deleteBusiness = (req, res) => {};
 
 module.exports = {
     createBusiness,
-    getBusinessesByCharacter,
-    getBusinessesByCharacter,
+    getBusinessesByCharacterId,
+    getBusinessById,
     updateBusiness,
     deleteBusiness
 };
