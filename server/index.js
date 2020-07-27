@@ -1,5 +1,5 @@
 const express = require('express'),
-    // businessRouter = require('./routes/businessRouter'),
+    businessRouter = require('./routes/business-router'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
     db = require('./db'),
@@ -16,6 +16,6 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-// app.use('/api', businessRouter);
+app.use('/api', businessRouter);
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`));
