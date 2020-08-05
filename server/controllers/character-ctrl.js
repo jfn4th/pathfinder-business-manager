@@ -1,6 +1,6 @@
 const Character = require('../models/Character');
 
-createCharacter = (req, res) => {
+createCharacter = async (req, res) => {
     const body = req.body;
 
     if (!body) {
@@ -16,7 +16,7 @@ createCharacter = (req, res) => {
         return res.status(400).json({ success: false, error: err });
     }
 
-    character
+    await character
         .save()
         .then(() => {
             return res.status(201).json({
@@ -32,10 +32,34 @@ createCharacter = (req, res) => {
             });
         });
 };
-getCharacters = (req, res) => {};
-getCharacterById = (req, res) => {};
-updateCharacter = (req, res) => {};
-deleteCharacter = (req, res) => {};
+
+getCharacters = async (req, res) => {
+    await Character.find({}, (err, characters) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err });
+        }
+        if (!characters.length) {
+            return res.status(404).json({ success: false, error: 'Characters not found!' });
+        }
+        return res.status(200).json({ success: true, data: characters });
+    }).catch((err) => console.log(err));
+};
+
+getCharacterById = async (req, res) => {
+    await Character.findById(req.params.charId, (err, character) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err });
+        }
+
+        if (!character) {
+            return res.status(404).json({ success: false, error: 'Character not found!' });
+        }
+    });
+};
+
+updateCharacter = async (req, res) => {};
+
+deleteCharacter = async (req, res) => {};
 
 module.exports = {
     createCharacter,
